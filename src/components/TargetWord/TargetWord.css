@@ -1,0 +1,26 @@
+.dictation-wrapper {
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.16);
+  font-family: Gotham;
+  font-size: 92px;
+  font-weight: 500;
+  margin-bottom: 45px;
+}
+.dictation-wrapper p {
+  text-transform: uppercase;
+}
+.white {
+  color: white;
+}
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+input {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 1rem;
+}

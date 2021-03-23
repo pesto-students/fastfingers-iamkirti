@@ -1,0 +1,49 @@
+p {
+  color: #ff5155;
+}
+.heading {
+  font-size: 81px;
+}
+.game-desc {
+  font-size: 26px;
+  margin-bottom: 52px;
+  font-weight: 500;
+}
+input,
+select {
+  background-color: #97a1a3;
+  border-radius: 15px;
+  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.8);
+  padding: 31px 278px 24px 32px;
+}
+select {
+  background-color: transparent;
+  color: #97a1a3;
+  margin-top: 25px;
+  margin-bottom: 196px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  margin-top: 133px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container img {
+  width: 234.2px;
+  height: 156.1px;
+}
+.start {
+  font-size: 48px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.start img {
+  width: 56.2px;
+  height: 75.4px;
+}

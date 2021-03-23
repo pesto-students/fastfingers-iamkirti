@@ -1,0 +1,32 @@
+.side-container {
+  width: 346px;
+  height: 693px;
+  background-color: green;
+
+  color: #ff5155;
+  border: 3px solid #ff5155;
+  border-radius: 15px;
+  display: flex;
+}
+.score-board {
+  font-family: Gotham;
+  font-size: 30px;
+}
+.main-wrapper {
+  display: flex;
+  justify-content: initial;
+}
+.content-wrapper {
+  width: 100%;
+}
+
+.dictation-wrapper {
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.16);
+  font-family: Gotham;
+  font-size: 92px;
+  font-weight: 500;
+  margin-bottom: 45px;
+}
+.dictation-wrapper p {
+  text-transform: uppercase;
+}

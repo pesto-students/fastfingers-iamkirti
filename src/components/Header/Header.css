@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  flex-direction: column;
+}
+.name {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-family: Breamcatcher;
+}
+.userrinfo,
+.userrinfol {
+  display: flex;
+  align-items: center;
+}
+
+.wrapper {
+  width: 100%;
+  margin-bottom: 50px;
+}
+.userrinfo img {
+  width: 40.7px;
+  height: 40.7px;
+}
+.userrinfo p,
+.userrinfol p {
+  font-size: 44px;
+  margin-left: 22.3px;
+}
+.userrinfol img {
+  width: 44.7px;
+  height: 22.3px;
+}
+.right p {
+  font-family: LaserCorpsGradient;
+  font-size: 56px;
+}
