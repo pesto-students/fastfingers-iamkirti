@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
 import CountDown from "../CountDown/CountDown";
 import { middleword, easyword, hardword } from "../utils";
 import TargetWord from "../TargetWord/TargetWord";
 import "./MainPage.css";
 function MainPage({ level }) {
-  /* const [selectedWord, setselectedWord] = useState(0);
-  const fetchword = (selectedWord) => {
-    console.log("selected", selectedWord);
-  }; */
   const [userinput, setUserinput] = useState("");
   const [randomword, setRandomword] = useState("");
 
   useEffect(() => {
-    console.log("function called");
     if (level === "easy") {
       setRandomword(easyword());
     } else if (level === "medium") {
@@ -23,8 +17,6 @@ function MainPage({ level }) {
       setRandomword(hardword());
     }
   }, []);
-
-  console.log("random word firesyt", randomword);
 
   const onUserInputChange = (e) => {
     const { target: { value } = {} } = e;
@@ -39,7 +31,7 @@ function MainPage({ level }) {
       } else {
         setRandomword(hardword());
       }
-      console.log("random word", randomword);
+
       setUserinput("");
     }
   };

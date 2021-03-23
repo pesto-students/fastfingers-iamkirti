@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+
 import "./Login.css";
-import Home from "../Home/Home";
+
 import KeyboardImage from "../../assets/keyboard123.png";
 import PlayButton from "../../assets/play.png";
 export default class Login extends Component {
@@ -35,14 +30,7 @@ export default class Login extends Component {
   handleFormSubmit = async (e) => {
     e.preventDefault();
   };
-  componentDidUpdate() {
-    /* window.sessionStorage.setItem(
-      "userloggedin",
-      JSON.stringify(this.state.name)
-    );
-    console.log(this.state.name);
-    console.log(sessionStorage.getItem("userloggedin")); */
-  }
+  componentDidUpdate() {}
   render() {
     const { name, level } = this.state;
 
