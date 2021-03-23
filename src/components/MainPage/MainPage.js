@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
-import CountDown from "../CountDown/CountDown";
+import Timer from "../Timer/Timer";
 import { middleword, easyword, hardword } from "../utils";
 import TargetWord from "../TargetWord/TargetWord";
 import "./MainPage.css";
@@ -16,7 +16,7 @@ function MainPage({ level }) {
     } else {
       setRandomword(hardword());
     }
-  }, []);
+  }, [level]);
 
   const onUserInputChange = (e) => {
     const { target: { value } = {} } = e;
@@ -40,7 +40,7 @@ function MainPage({ level }) {
     <div className="main-wrapper">
       <ScoreBoard />
       <div className="content-wrapper">
-        <CountDown />
+        <Timer />
         <div className="dictation-wrapper">
           <TargetWord targetWord={randomword} userInput={userinput} />
 

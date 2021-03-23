@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import React from "react";
+
 import gamepadImage from "../../assets/gamepad.png";
 import UserImage from "../../assets/user.png";
 import "./Header.css";
