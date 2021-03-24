@@ -22,5 +22,5 @@ export default function TargetWord({ targetWord, userInput }) {
       );
     }
   });
-  return <p className="dictation-wrapper">{content}</p>;
+  return <p>{content}</p>;
 }

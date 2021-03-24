@@ -9,5 +9,11 @@
   display: flex;
 }
 .score-board p {
-  margin: 32px auto;
+}
+.stop-game {
+  display: flex;
+  align-items: center;
+  font-family: Gotham;
+  font-size: 38px;
+  font-weight: 500;
 }

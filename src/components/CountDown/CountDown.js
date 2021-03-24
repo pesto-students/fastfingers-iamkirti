@@ -5,7 +5,7 @@ const FULL_DASH_ARRAY = 283;
 let timePassed = 0;
 let timeout = "";
 
-export default function CountDown({ timeLimit, handleGameEnd }) {
+export default function CountDown({ timeLimit, handleGameEnd, targetWord }) {
   const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [stroke, setStroke] = useState("283 283");
   const [timerClasses, setTimerClasses] = useState(
@@ -72,7 +72,7 @@ export default function CountDown({ timeLimit, handleGameEnd }) {
           ></path>
         </g>
       </svg>
-      {timeLeft != -1 ? (
+      {timeLeft !== -1 ? (
         <span className="base-timer__label">{formatTime(timeLeft)}</span>
       ) : (
         ""

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Home.css";
 
@@ -22,7 +22,19 @@ function Home(props) {
     console.log(props.location.state.name);
     console.log(sessionStorage.getItem("user"));
   });
-
+  useEffect(() => {
+    switch (props.location.state.level) {
+      case "EASY":
+        window.sessionStorage.setItem("levelinnum", JSON.stringify(1));
+        break;
+      case "MEDIUM":
+        window.sessionStorage.setItem("levelinnum", JSON.stringify(1.5));
+        break;
+      default:
+        window.sessionStorage.setItem("levelinnum", JSON.stringify(2));
+        break;
+    }
+  }, [props.location.state.level]);
   return (
     <div className="header-container">
       <Header

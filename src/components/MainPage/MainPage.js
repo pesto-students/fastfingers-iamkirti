@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
-import Timer from "../Timer/Timer";
+import CountDown from "../CountDown/CountDown";
 import { middleword, easyword, hardword } from "../utils";
 import TargetWord from "../TargetWord/TargetWord";
 import "./MainPage.css";
@@ -8,40 +8,62 @@ function MainPage({ level }) {
   const [userinput, setUserinput] = useState("");
   const [randomword, setRandomword] = useState("");
 
+  const [difficultyFactor, setDifficultyFactor] = useState(
+    sessionStorage.getItem("levelinnum")
+  );
+  const [timerValues, setTimerValues] = useState("");
+  const [gameResults, setGameResults] = useState([]);
+  const [gameScore, setGameScore] = useState(0);
+  const [gameNumber, setGameNumber] = useState(1);
   useEffect(() => {
-    if (level === "easy") {
-      setRandomword(easyword());
-    } else if (level === "medium") {
-      setRandomword(middleword());
-    } else {
-      setRandomword(hardword());
+    getDictionaryWord();
+  }, []);
+  let a;
+  const getDictionaryWord = () => {
+    if (difficultyFactor >= 1.5 && difficultyFactor < 2) {
+      a = middleword();
+      setRandomword(a);
     }
-  }, [level]);
+    if (difficultyFactor < 1.5) {
+      a = easyword();
+      setRandomword(a);
+    }
+    if (difficultyFactor >= 2) {
+      a = hardword();
+      setRandomword(a);
+    }
+
+    let timerValue = Math.ceil((a.length / difficultyFactor) * 1000);
+    setTimerValues(timerValue >= 2000 ? timerValue : 2000);
+  };
 
   const onUserInputChange = (e) => {
     const { target: { value } = {} } = e;
-
     setUserinput(value);
-
     if (value === randomword) {
-      if (level === "easy") {
-        setRandomword(easyword());
-      } else if (level === "medium") {
-        setRandomword(middleword());
-      } else {
-        setRandomword(hardword());
-      }
+      setDifficultyFactor(1.01 * difficultyFactor);
+
+      getDictionaryWord();
 
       setUserinput("");
     }
+  };
+
+  const onGameEnd = () => {
+    console.log("hi there in on game eng!!!!!");
   };
 
   return (
     <div className="main-wrapper">
       <ScoreBoard />
       <div className="content-wrapper">
-        <Timer />
         <div className="dictation-wrapper">
+          <CountDown
+            timeLimit={timerValues}
+            handleGameEnd={onGameEnd}
+            targetWord={randomword}
+          />
+
           <TargetWord targetWord={randomword} userInput={userinput} />
 
           <input

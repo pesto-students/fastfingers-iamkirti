@@ -53,12 +53,12 @@ export default class Login extends Component {
           />
           <select value={level} onChange={this.handleLevelChange}>
             <option>DIFFICULTY LEVEL</option>
-            <option value="easy">EASY</option>
-            <option value="medium">MEDIUM</option>
-            <option value="hard">HARD</option>
+            <option value="EASY">EASY</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="HARD">HARD</option>
           </select>
-          <div className="start">
-            <img src={PlayButton} alt="play" onClick={this.onNavigationHome} />
+          <div className="start" onClick={this.onNavigationHome}>
+            <img src={PlayButton} alt="play" />
             <p>START GAME</p>{" "}
           </div>
         </form>
