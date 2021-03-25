@@ -46,7 +46,7 @@ function MainPage({ level }) {
     setUserinput(value);
     if (value === randomword) {
       setDifficultyFactor(1.01 * difficultyFactor);
-      score = getDictionaryWord();
+      getDictionaryWord();
 
       setUserinput("");
     }
