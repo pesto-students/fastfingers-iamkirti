@@ -30,3 +30,25 @@
 .dictation-wrapper p {
   text-transform: uppercase;
 }
+.game-score {
+  font-family: Gotham;
+  font-size: 70px;
+  font-weight: 500;
+  margin-bottom: 47px;
+  color: #ffffff;
+}
+.time-elapsed {
+  font-family: Gotham;
+  font-size: 118px;
+  font-weight: 500;
+  color: #ffffff;
+}
+.play-again {
+  display: flex;
+  align-items: center;
+  font-family: Gotham;
+  font-size: 54px;
+  font-weight: 500;
+  margin: 0 auto;
+  justify-content: center;
+}

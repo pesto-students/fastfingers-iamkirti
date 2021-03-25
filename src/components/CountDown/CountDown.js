@@ -38,7 +38,7 @@ export default function CountDown({ timeLimit, handleGameEnd, targetWord }) {
         const strokeValue =
           calculateTimeFraction(timeLeft, timeLimit) * FULL_DASH_ARRAY;
         setStroke(`${strokeValue} 283`);
-      } else if (timeLeft === 0) {
+      } else if (timeLeft <= 0) {
         handleGameEnd();
         clearInterval(timeout);
       }

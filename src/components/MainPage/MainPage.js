@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
 import CountDown from "../CountDown/CountDown";
-import { middleword, easyword, hardword } from "../utils";
+import { middleword, easyword, hardword, formatTime } from "../utils";
 import TargetWord from "../TargetWord/TargetWord";
+import ReloadImage from "../../assets/reload.png";
 import "./MainPage.css";
+let timePassed = 0;
+let score;
 function MainPage({ level }) {
   const [userinput, setUserinput] = useState("");
   const [randomword, setRandomword] = useState("");
@@ -15,6 +18,9 @@ function MainPage({ level }) {
   const [gameResults, setGameResults] = useState([]);
   const [gameScore, setGameScore] = useState(0);
   const [gameNumber, setGameNumber] = useState(1);
+  const [gameover, setGameover] = useState(true);
+  /*   const timePassed = useRef(0);
+  let score = useRef(0); */
   useEffect(() => {
     getDictionaryWord();
   }, []);
@@ -42,20 +48,34 @@ function MainPage({ level }) {
     setUserinput(value);
     if (value === randomword) {
       setDifficultyFactor(1.01 * difficultyFactor);
-
-      getDictionaryWord();
+      score = getDictionaryWord();
 
       setUserinput("");
     }
   };
 
   const onGameEnd = () => {
+    if (gameResults.length > 7) {
+      gameResults.shift();
+    }
     console.log("hi there in on game eng!!!!!");
+    const timeelapsedinmillisec =
+      Date.now() - sessionStorage.getItem("startTime");
+    const timeinsec = timeelapsedinmillisec / 1000;
+    console.log("timeelapsedinsec@@@", timeinsec);
+    const formattime = formatTime(timeinsec, "mm:ss");
+    console.log("setGameScore", gameScore);
+    setGameScore(formattime);
+    setGameNumber(gameNumber + 1);
+    setGameResults([...gameResults, { gameNumber, formattime }]);
+    setGameover(false);
   };
-
-  return (
+  const onPlayAgain = () => {
+    setGameover(true);
+  };
+  return gameover ? (
     <div className="main-wrapper">
-      <ScoreBoard />
+      <ScoreBoard handleGameEnd={onGameEnd} gameResultsare={gameResults} />
       <div className="content-wrapper">
         <div className="dictation-wrapper">
           <CountDown
@@ -73,6 +93,15 @@ function MainPage({ level }) {
             onChange={onUserInputChange}
           />
         </div>
+      </div>
+    </div>
+  ) : (
+    <div>
+      <p className="game-score">SCORE:GAME {gameNumber}</p>
+      <p className="time-elapsed">{gameScore}</p>
+      <div className="play-again" onClick={onPlayAgain}>
+        <img src={ReloadImage} alt="keyboard logo" />
+        <p> PLAY AGAIN</p>
       </div>
     </div>
   );

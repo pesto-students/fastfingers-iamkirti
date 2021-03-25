@@ -9,11 +9,13 @@ export default class Login extends Component {
     super(props);
     this.state = {
       name: "",
-      level: "",
+      level: "EASY",
     };
   }
 
   onNavigationHome = () => {
+    window.sessionStorage.setItem("startTime", Date.now());
+
     this.props.history.push("/home", {
       name: this.state.name,
       level: this.state.level,
@@ -29,6 +31,7 @@ export default class Login extends Component {
   };
   handleFormSubmit = async (e) => {
     e.preventDefault();
+    window.sessionStorage.setItem("startTime", Date.now());
   };
   componentDidUpdate() {}
   render() {
@@ -52,7 +55,6 @@ export default class Login extends Component {
             onChange={this.handleNameChange}
           />
           <select value={level} onChange={this.handleLevelChange}>
-            <option>DIFFICULTY LEVEL</option>
             <option value="EASY">EASY</option>
             <option value="MEDIUM">MEDIUM</option>
             <option value="HARD">HARD</option>
