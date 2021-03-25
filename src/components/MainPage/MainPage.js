@@ -5,8 +5,7 @@ import { middleword, easyword, hardword, formatTime } from "../utils";
 import TargetWord from "../TargetWord/TargetWord";
 import ReloadImage from "../../assets/reload.png";
 import "./MainPage.css";
-let timePassed = 0;
-let score;
+
 function MainPage({ level }) {
   const [userinput, setUserinput] = useState("");
   const [randomword, setRandomword] = useState("");
@@ -19,8 +18,7 @@ function MainPage({ level }) {
   const [gameScore, setGameScore] = useState(0);
   const [gameNumber, setGameNumber] = useState(1);
   const [gameover, setGameover] = useState(true);
-  /*   const timePassed = useRef(0);
-  let score = useRef(0); */
+
   useEffect(() => {
     getDictionaryWord();
   }, []);
@@ -58,13 +56,13 @@ function MainPage({ level }) {
     if (gameResults.length > 7) {
       gameResults.shift();
     }
-    console.log("hi there in on game eng!!!!!");
+
     const timeelapsedinmillisec =
       Date.now() - sessionStorage.getItem("startTime");
     const timeinsec = timeelapsedinmillisec / 1000;
-    console.log("timeelapsedinsec@@@", timeinsec);
+
     const formattime = formatTime(timeinsec, "mm:ss");
-    console.log("setGameScore", gameScore);
+
     setGameScore(formattime);
     setGameNumber(gameNumber + 1);
     setGameResults([...gameResults, { gameNumber, formattime }]);
