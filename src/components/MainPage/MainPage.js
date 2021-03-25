@@ -5,8 +5,8 @@ import { middleword, easyword, hardword, formatTime } from "../utils";
 import TargetWord from "../TargetWord/TargetWord";
 import ReloadImage from "../../assets/reload.png";
 import "./MainPage.css";
-
-function MainPage({ level }) {
+import { Link, useHistory } from "react-router-dom";
+function MainPage({ navigationforlogin }) {
   const [userinput, setUserinput] = useState("");
   const [randomword, setRandomword] = useState("");
 
@@ -18,7 +18,7 @@ function MainPage({ level }) {
   const [gameScore, setGameScore] = useState(0);
   const [gameNumber, setGameNumber] = useState(1);
   const [gameover, setGameover] = useState(true);
-
+  const history = useHistory();
   useEffect(() => {
     getDictionaryWord();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,7 +54,9 @@ function MainPage({ level }) {
       setUserinput("");
     }
   };
-
+  const handleQuitGame = () => {
+    history.push("/login");
+  };
   const onGameEnd = () => {
     if (gameResults.length > 7) {
       gameResults.shift();
@@ -103,6 +105,9 @@ function MainPage({ level }) {
       <div className="play-again" onClick={onPlayAgain}>
         <img src={ReloadImage} alt="keyboard logo" />
         <p> PLAY AGAIN</p>
+      </div>
+      <div class="quit" onClick={handleQuitGame}>
+        QUIT
       </div>
     </div>
   );
