@@ -15,7 +15,7 @@ function Home(props) {
       JSON.stringify(props.location.state.level)
     );
   });
-  useEffect(() => {
+  /* useEffect(() => {
     switch (props.location.state.level) {
       case "EASY":
         window.sessionStorage.setItem("levelinnum", JSON.stringify(1));
@@ -27,7 +27,7 @@ function Home(props) {
         window.sessionStorage.setItem("levelinnum", JSON.stringify(2));
         break;
     }
-  }, [props.location.state.level]);
+  }, [props.location.state.level]); */
   return (
     <div className="header-container">
       <Header

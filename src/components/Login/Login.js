@@ -32,6 +32,17 @@ export default class Login extends Component {
   handleFormSubmit = async (e) => {
     e.preventDefault();
     window.sessionStorage.setItem("startTime", Date.now());
+    switch (this.state.level) {
+      case "EASY":
+        window.sessionStorage.setItem("levelinnum", JSON.stringify(1));
+        break;
+      case "MEDIUM":
+        window.sessionStorage.setItem("levelinnum", JSON.stringify(1.5));
+        break;
+      default:
+        window.sessionStorage.setItem("levelinnum", JSON.stringify(2));
+        break;
+    }
   };
   componentDidUpdate() {}
   render() {

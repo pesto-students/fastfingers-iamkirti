@@ -11,7 +11,7 @@ function MainPage({ navigationforlogin }) {
   const [randomword, setRandomword] = useState("");
 
   const [difficultyFactor, setDifficultyFactor] = useState(
-    sessionStorage.getItem("levelinnum")
+    window.sessionStorage.getItem("levelinnum")
   );
   const [timerValues, setTimerValues] = useState("");
   const [gameResults, setGameResults] = useState([]);
@@ -26,18 +26,22 @@ function MainPage({ navigationforlogin }) {
   let a;
 
   const getDictionaryWord = () => {
-    setDifficultyFactor(sessionStorage.getItem("levelinnum"));
+    setDifficultyFactor(window.sessionStorage.getItem("levelinnum"));
+    console.log("diff factor", difficultyFactor);
     if (difficultyFactor >= 1.5 && difficultyFactor < 2) {
       a = middleword();
       setRandomword(a);
+      console.log("medim diff", a);
     }
     if (difficultyFactor < 1.5) {
       a = easyword();
       setRandomword(a);
+      console.log("easy diff", a);
     }
     if (difficultyFactor >= 2) {
       a = hardword();
       setRandomword(a);
+      console.log("hard diff", a);
     }
 
     let timerValue = Math.ceil((a.length / difficultyFactor) * 1000);
@@ -106,7 +110,7 @@ function MainPage({ navigationforlogin }) {
         <img src={ReloadImage} alt="keyboard logo" />
         <p> PLAY AGAIN</p>
       </div>
-      <div class="quit" onClick={handleQuitGame}>
+      <div className="quit" onClick={handleQuitGame}>
         QUIT
       </div>
     </div>
