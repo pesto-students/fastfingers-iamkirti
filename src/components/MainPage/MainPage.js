@@ -72,8 +72,7 @@ function MainPage({ level }) {
   const onPlayAgain = () => {
     setGameover(true);
   };
-  // return gameover ?
-  return (
+  return gameover ? (
     <div className="main-wrapper">
       <ScoreBoard handleGameEnd={onGameEnd} gameResultsare={gameResults} />
       <div className="content-wrapper">
@@ -95,7 +94,7 @@ function MainPage({ level }) {
         </div>
       </div>
     </div>
-  ); /* : (
+  ) : (
     <div>
       <p className="game-score">SCORE:GAME {gameNumber}</p>
       <p className="time-elapsed">{gameScore}</p>
@@ -104,7 +103,7 @@ function MainPage({ level }) {
         <p> PLAY AGAIN</p>
       </div>
     </div>
-  ); */
+  );
 }
 
 export default MainPage;
