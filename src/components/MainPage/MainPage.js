@@ -5,7 +5,7 @@ import { middleword, easyword, hardword, formatTime } from "../utils";
 import TargetWord from "../TargetWord/TargetWord";
 import ReloadImage from "../../assets/reload.png";
 import "./MainPage.css";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 function MainPage({ navigationforlogin }) {
   const [userinput, setUserinput] = useState("");
   const [randomword, setRandomword] = useState("");
