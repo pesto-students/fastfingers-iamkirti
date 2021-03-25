@@ -9,7 +9,7 @@ function Header({ name, level }) {
       <div className="name">
         <div className="userrinfo">
           <img src={UserImage} alt="user logo" />
-          <p>Player name: {name}</p>
+          <p>{name}</p>
         </div>
         <div className="right">
           <p>fast fingers</p>

@@ -24,7 +24,9 @@ function MainPage({ level }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   let a;
+
   const getDictionaryWord = () => {
+    setDifficultyFactor(sessionStorage.getItem("levelinnum"));
     if (difficultyFactor >= 1.5 && difficultyFactor < 2) {
       a = middleword();
       setRandomword(a);
