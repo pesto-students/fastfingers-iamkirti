@@ -48,7 +48,7 @@ export default function CountDown({ timeLimit, handleGameEnd, targetWord }) {
     return () => {
       clearInterval(timeout);
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft, timeLimit, handleGameEnd]);
+  }, [timeLeft]);
 
   return (
     <div className="base-timer">

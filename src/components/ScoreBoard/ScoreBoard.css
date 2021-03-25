@@ -6,7 +6,7 @@
   color: #ff5155;
   border: 3px solid #ff5155;
   border-radius: 15px;
-  display: flex;
+
   justify-content: center;
 }
 .score-board p {
@@ -21,4 +21,10 @@
 .score-board-items {
   display: flex;
   flex-direction: column;
+  color: white;
+}
+.score-board-items p {
+  color: white;
+  font-family: Gotham;
+  font-size: 30px;
 }

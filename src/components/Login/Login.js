@@ -50,9 +50,9 @@ export default class Login extends Component {
             name="name"
             id="name-input"
             placeholder="TYPE YOUR NAME"
-            required
             value={name}
             onChange={this.handleNameChange}
+            required
           />
           <select value={level} onChange={this.handleLevelChange}>
             <option value="EASY">EASY</option>
