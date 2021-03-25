@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
 import CountDown from "../CountDown/CountDown";
 import { middleword, easyword, hardword, formatTime } from "../utils";
@@ -21,6 +21,7 @@ function MainPage({ level }) {
 
   useEffect(() => {
     getDictionaryWord();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   let a;
   const getDictionaryWord = () => {
