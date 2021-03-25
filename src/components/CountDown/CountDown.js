@@ -48,7 +48,7 @@ export default function CountDown({ timeLimit, handleGameEnd, targetWord }) {
     return () => {
       clearInterval(timeout);
     };
-  }, [timeLeft, timeLimit, handleGameEnd]);
+  }, [timeLeft, timeLimit, handleGameEnd, changeTimerColour]);
 
   return (
     <div className="base-timer">

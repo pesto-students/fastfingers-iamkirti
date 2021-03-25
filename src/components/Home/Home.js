@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import "./Home.css";
 
 import Header from "../Header/Header";
 import MainPage from "../MainPage/MainPage";
 function Home(props) {
-  console.log("props", props);
-
   useEffect(() => {
-    // Update the document title using the browser API
-
-    console.log("useeffect");
     window.sessionStorage.setItem(
       "user",
       JSON.stringify(props.location.state.name)
@@ -19,8 +14,6 @@ function Home(props) {
       "level",
       JSON.stringify(props.location.state.level)
     );
-    console.log(props.location.state.name);
-    console.log(sessionStorage.getItem("user"));
   });
   useEffect(() => {
     switch (props.location.state.level) {
