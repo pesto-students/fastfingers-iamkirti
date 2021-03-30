@@ -40,7 +40,7 @@ export default class Login extends Component {
   };
   componentDidUpdate() {}
   render() {
-    const { name, difficultyfactor } = this.state;
+    const { name } = this.state;
 
     return (
       <div className="container">

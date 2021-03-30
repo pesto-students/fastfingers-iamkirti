@@ -8,7 +8,7 @@ import "./MainPage.css";
 import { useHistory } from "react-router-dom";
 import LiveScore from "../LiveScore/LiveScore";
 
-function MainPage({ level, updatingScore }) {
+function MainPage({ level }) {
   const [userinput, setUserinput] = useState("");
   const [randomword, setRandomword] = useState("");
   const [difficultyFactor, setDifficultyFactor] = useState(level);
