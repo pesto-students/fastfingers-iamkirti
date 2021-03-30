@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import StopImage from "../../assets/stop.png";
 import "./ScoreBoard.css";
 

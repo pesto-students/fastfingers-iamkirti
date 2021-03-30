@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import gamepadImage from "../../assets/gamepad.png";
 import UserImage from "../../assets/user.png";

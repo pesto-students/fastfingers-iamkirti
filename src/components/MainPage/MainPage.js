@@ -19,7 +19,7 @@ function MainPage({ level, updatingScore }) {
   const [formattime, setformattime] = useState(0);
   const [gameover, setGameover] = useState(true);
   const history = useHistory();
-  const [timePassed, setTimePassed] = useState(0);
+
   useEffect(() => {
     getDictionaryWord();
     // eslint-disable-next-line react-hooks/exhaustive-deps

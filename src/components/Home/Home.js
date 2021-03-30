@@ -5,8 +5,6 @@ import "./Home.css";
 import Header from "../Header/Header";
 import MainPage from "../MainPage/MainPage";
 function Home(props) {
-  console.log("props", props);
-  const [gameScore, setGameScore] = useState(0);
   const [diffleveltext, setDiffleveltext] = useState("");
   useEffect(() => {
     window.sessionStorage.setItem(
@@ -19,9 +17,6 @@ function Home(props) {
     );
   });
 
-  const scoreUpdation = (newScore) => {
-    setGameScore(newScore);
-  };
   useEffect(() => {
     switch (props.location.state.difficultyfactor) {
       case "1":
@@ -43,12 +38,8 @@ function Home(props) {
       <Header
         name={props.location.state.name}
         difficultyfactor={diffleveltext}
-        newScore={gameScore}
       />
-      <MainPage
-        level={props.location.state.difficultyfactor}
-        updatingScore={scoreUpdation}
-      />
+      <MainPage level={props.location.state.difficultyfactor} />
     </div>
   );
 }
