@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Home.css";
 
 import Header from "../Header/Header";
 import MainPage from "../MainPage/MainPage";
 function Home(props) {
+  console.log("props", props);
+  const [gameScore, setGameScore] = useState(0);
+  const [diffleveltext, setDiffleveltext] = useState("");
   useEffect(() => {
     window.sessionStorage.setItem(
       "user",
@@ -12,29 +15,40 @@ function Home(props) {
     );
     window.sessionStorage.setItem(
       "level",
-      JSON.stringify(props.location.state.level)
+      JSON.stringify(props.location.state.difficultyfactor)
     );
   });
+
+  const scoreUpdation = (newScore) => {
+    setGameScore(newScore);
+  };
   useEffect(() => {
-    switch (props.location.state.level) {
-      case "EASY":
-        window.sessionStorage.setItem("levelinnum", JSON.stringify(1));
+    switch (props.location.state.difficultyfactor) {
+      case "1":
+        window.sessionStorage.setItem("levelintext", "EASY");
+        setDiffleveltext("EASY");
         break;
-      case "MEDIUM":
-        window.sessionStorage.setItem("levelinnum", JSON.stringify(1.5));
+      case "1.5":
+        window.sessionStorage.setItem("levelintext", "MEDIUM");
+        setDiffleveltext("MEDIUM");
         break;
       default:
-        window.sessionStorage.setItem("levelinnum", JSON.stringify(2));
+        window.sessionStorage.setItem("levelintext", "DIFFICULT");
+        setDiffleveltext("DIFFICULT");
         break;
     }
-  }, [props.location.state.level]);
+  }, [props.location.state.difficultyfactor]);
   return (
     <div className="header-container">
       <Header
         name={props.location.state.name}
-        level={props.location.state.level}
+        difficultyfactor={diffleveltext}
+        newScore={gameScore}
       />
-      <MainPage level={props.location.state.level} />
+      <MainPage
+        level={props.location.state.difficultyfactor}
+        updatingScore={scoreUpdation}
+      />
     </div>
   );
 }

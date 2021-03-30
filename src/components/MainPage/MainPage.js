@@ -6,19 +6,20 @@ import TargetWord from "../TargetWord/TargetWord";
 import ReloadImage from "../../assets/reload.png";
 import "./MainPage.css";
 import { useHistory } from "react-router-dom";
-function MainPage({ navigationforlogin }) {
+import LiveScore from "../LiveScore/LiveScore";
+
+function MainPage({ level, updatingScore }) {
   const [userinput, setUserinput] = useState("");
   const [randomword, setRandomword] = useState("");
-
-  const [difficultyFactor, setDifficultyFactor] = useState(
-    window.sessionStorage.getItem("levelinnum")
-  );
+  const [difficultyFactor, setDifficultyFactor] = useState(level);
   const [timerValues, setTimerValues] = useState("");
   const [gameResults, setGameResults] = useState([]);
   const [gameScore, setGameScore] = useState(0);
   const [gameNumber, setGameNumber] = useState(1);
+  const [formattime, setformattime] = useState(0);
   const [gameover, setGameover] = useState(true);
   const history = useHistory();
+  const [timePassed, setTimePassed] = useState(0);
   useEffect(() => {
     getDictionaryWord();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,22 +27,17 @@ function MainPage({ navigationforlogin }) {
   let a;
 
   const getDictionaryWord = () => {
-    setDifficultyFactor(window.sessionStorage.getItem("levelinnum"));
-    console.log("diff factor", difficultyFactor);
     if (difficultyFactor >= 1.5 && difficultyFactor < 2) {
       a = middleword();
       setRandomword(a);
-      console.log("medim diff", a);
     }
     if (difficultyFactor < 1.5) {
       a = easyword();
       setRandomword(a);
-      console.log("easy diff", a);
     }
     if (difficultyFactor >= 2) {
       a = hardword();
       setRandomword(a);
-      console.log("hard diff", a);
     }
 
     let timerValue = Math.ceil((a.length / difficultyFactor) * 1000);
@@ -61,31 +57,46 @@ function MainPage({ navigationforlogin }) {
   const handleQuitGame = () => {
     history.push("/login");
   };
+
   const onGameEnd = () => {
     if (gameResults.length > 7) {
       gameResults.shift();
     }
 
     const timeelapsedinmillisec =
-      Date.now() - sessionStorage.getItem("startTime");
-    const timeinsec = timeelapsedinmillisec / 1000;
+      Date.now() - window.sessionStorage.getItem("startTime");
 
-    const formattime = formatTime(timeinsec, "mm:ss");
+    const formattime1 = formatTime(timeelapsedinmillisec, "mm:ss");
 
-    setGameScore(formattime);
+    setformattime(formattime1);
+    setGameScore(formattime1);
+
+    setGameResults([
+      ...gameResults,
+      { gameNumber, timeelapsedinmillisec, formattime1 },
+    ]);
     setGameNumber(gameNumber + 1);
-    setGameResults([...gameResults, { gameNumber, formattime }]);
     setGameover(false);
   };
+
   const onPlayAgain = () => {
+    window.sessionStorage.setItem("startTime", Date.now());
     setGameover(true);
   };
   return gameover ? (
     <div className="main-wrapper">
+      <div
+        className="right"
+        style={{ position: "absolute", right: "170px", top: "130px" }}
+      >
+        <LiveScore isGameOver={gameover} />
+      </div>
+
       <ScoreBoard handleGameEnd={onGameEnd} gameResultsare={gameResults} />
       <div className="content-wrapper">
         <div className="dictation-wrapper">
           <CountDown
+            key={randomword}
             timeLimit={timerValues}
             handleGameEnd={onGameEnd}
             targetWord={randomword}
@@ -104,7 +115,8 @@ function MainPage({ navigationforlogin }) {
     </div>
   ) : (
     <div>
-      <p className="game-score">SCORE:GAME {gameNumber}</p>
+      <p className="game-score">SCORE:GAME {gameNumber - 1}</p>
+
       <p className="time-elapsed">{gameScore}</p>
       <div className="play-again" onClick={onPlayAgain}>
         <img src={ReloadImage} alt="keyboard logo" />

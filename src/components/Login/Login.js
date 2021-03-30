@@ -9,17 +9,23 @@ export default class Login extends Component {
     super(props);
     this.state = {
       name: "",
-      level: "EASY",
+      difficultyfactor: "1",
+      namemsgerror: "",
     };
   }
 
   onNavigationHome = () => {
-    window.sessionStorage.setItem("startTime", Date.now());
-
-    this.props.history.push("/home", {
-      name: this.state.name,
-      level: this.state.level,
-    });
+    if (this.state.name === "") {
+      console.log("emptyyyyy");
+      this.setState({ namemsgerror: "Player name cannot be empty" });
+    } else {
+      console.log("time when game has started", Date.now());
+      window.sessionStorage.setItem("startTime", Date.now());
+      this.props.history.push("/home", {
+        name: this.state.name,
+        difficultyfactor: this.state.difficultyfactor,
+      });
+    }
   };
   handleNameChange = (e) => {
     const { target: { value } = {} } = e;
@@ -27,26 +33,14 @@ export default class Login extends Component {
   };
   handleLevelChange = (e) => {
     const { target: { value } = {} } = e;
-    this.setState({ level: value });
+    this.setState({ difficultyfactor: value });
   };
-  handleFormSubmit = async (e) => {
+  handleFormSubmit = (e) => {
     e.preventDefault();
-    window.sessionStorage.setItem("startTime", Date.now());
-    switch (this.state.level) {
-      case "EASY":
-        window.sessionStorage.setItem("levelinnum", JSON.stringify(1));
-        break;
-      case "MEDIUM":
-        window.sessionStorage.setItem("levelinnum", JSON.stringify(1.5));
-        break;
-      default:
-        window.sessionStorage.setItem("levelinnum", JSON.stringify(2));
-        break;
-    }
   };
   componentDidUpdate() {}
   render() {
-    const { name, level } = this.state;
+    const { name, difficultyfactor } = this.state;
 
     return (
       <div className="container">
@@ -65,12 +59,20 @@ export default class Login extends Component {
             onChange={this.handleNameChange}
             required
           />
-          <select value={level} onChange={this.handleLevelChange}>
-            <option value="EASY">EASY</option>
-            <option value="MEDIUM">MEDIUM</option>
-            <option value="HARD">HARD</option>
+          <p style={{ textAlign: "left" }}>{this.state.namemsgerror}</p>
+          <select
+            value={this.state.difficultyfactor}
+            onChange={this.handleLevelChange}
+          >
+            <option value="1">EASY</option>
+            <option value="1.5">MEDIUM</option>
+            <option value="2">HARD</option>
           </select>
-          <div className="start" onClick={this.onNavigationHome}>
+          <div
+            className="start"
+            onClick={this.onNavigationHome}
+            cursor="pointer"
+          >
             <img src={PlayButton} alt="play" />
             <p>START GAME</p>{" "}
           </div>

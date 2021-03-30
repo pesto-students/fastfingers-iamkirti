@@ -53,3 +53,19 @@ export function formatTime(time, format = "ss:ms") {
     }`;
   }
 }
+
+export function Secsfomatting(timeinsecs) {
+  let minutes = 0;
+
+  if (timeinsecs % 60 === 0) {
+    timeinsecs = 0;
+  }
+  if (timeinsecs > 60) {
+    timeinsecs = Math.floor(timeinsecs % 60);
+    minutes += 1;
+  }
+
+  return `${minutes < 10 ? `0${minutes}` : minutes}:${
+    timeinsecs < 10 ? `0${timeinsecs}` : timeinsecs
+  }`;
+}

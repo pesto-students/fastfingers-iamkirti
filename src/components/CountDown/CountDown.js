@@ -5,7 +5,7 @@ const FULL_DASH_ARRAY = 283;
 let timePassed = 0;
 let timeout = "";
 
-export default function CountDown({ timeLimit, handleGameEnd, targetWord }) {
+export default function CountDown({ timeLimit, handleGameEnd }) {
   const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [stroke, setStroke] = useState("283 283");
   const [timerClasses, setTimerClasses] = useState(
@@ -48,7 +48,7 @@ export default function CountDown({ timeLimit, handleGameEnd, targetWord }) {
     return () => {
       clearInterval(timeout);
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft]);
+  }, [timeLeft, timeLimit, handleGameEnd]);
 
   return (
     <div className="base-timer">

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import gamepadImage from "../../assets/gamepad.png";
 import UserImage from "../../assets/user.png";
 import "./Header.css";
-function Header({ name, level }) {
+function Header({ name, difficultyfactor }) {
   return (
     <div className="wrapper">
       <div className="name">
@@ -18,10 +18,7 @@ function Header({ name, level }) {
       <div className="name">
         <div className="userrinfol">
           <img src={gamepadImage} alt="gamepadImage logo" />
-          <p>LEVEL: {level}</p>
-        </div>
-        <div className="right">
-          <p>SCORE:</p>
+          <p>LEVEL: {difficultyfactor}</p>
         </div>
       </div>
     </div>
