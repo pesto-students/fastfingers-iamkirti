@@ -16,7 +16,7 @@ function MainPage({ level }) {
   const [gameResults, setGameResults] = useState([]);
   const [gameScore, setGameScore] = useState(0);
   const [gameNumber, setGameNumber] = useState(1);
-  const [formattime, setformattime] = useState(0);
+
   const [gameover, setGameover] = useState(true);
   const history = useHistory();
 
@@ -68,7 +68,6 @@ function MainPage({ level }) {
 
     const formattime1 = formatTime(timeelapsedinmillisec, "mm:ss");
 
-    setformattime(formattime1);
     setGameScore(formattime1);
 
     setGameResults([
