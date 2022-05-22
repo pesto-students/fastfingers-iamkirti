@@ -20,7 +20,7 @@ export default class Login extends Component {
       this.setState({ namemsgerror: "Player name cannot be empty" });
     } else {
       console.log("time when game has started", Date.now());
-      window.sessionStorage.setItem("startTime", Date.now());
+      // window.sessionStorage.setItem("startTime", Date.now());
       this.props.history.push("/home", {
         name: this.state.name,
         difficultyfactor: this.state.difficultyfactor,

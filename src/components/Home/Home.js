@@ -6,16 +6,17 @@ import Header from "../Header/Header";
 import MainPage from "../MainPage/MainPage";
 function Home(props) {
   const [diffleveltext, setDiffleveltext] = useState("");
-  useEffect(() => {
-    window.sessionStorage.setItem(
-      "user",
-      JSON.stringify(props.location.state.name)
-    );
-    window.sessionStorage.setItem(
-      "level",
-      JSON.stringify(props.location.state.difficultyfactor)
-    );
-  });
+  // useEffect(() => {
+  window.sessionStorage.setItem(
+    "user",
+    JSON.stringify(props.location.state.name)
+  );
+  window.sessionStorage.setItem(
+    "level",
+    JSON.stringify(props.location.state.difficultyfactor)
+  );
+  window.sessionStorage.setItem("startTime", Date.now());
+  // });
 
   useEffect(() => {
     switch (props.location.state.difficultyfactor) {
